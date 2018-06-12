@@ -92,4 +92,18 @@ describe('testing methods of List class', () => {
     }, 10);
     expect(sum).toEqual(25);
   });
+
+  test('SHIFT: should return first element of array and leave array re-indexed', () => {
+    expect(myList.shift()).toEqual(0);
+    expect(myList).toHaveLength(5);
+    expect(myList.shift()).toEqual(1);
+    expect(myList.shift()).toEqual(2);
+    expect(myList).toHaveLength(3);
+    expect(myList[2]).toEqual(5);
+    myList.shift();
+    myList.shift();
+    myList.shift();
+    expect(myList).toHaveLength(0);
+    expect(myList.shift()).toBeUndefined();
+  });
 });
