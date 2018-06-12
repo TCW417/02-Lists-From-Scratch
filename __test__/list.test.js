@@ -16,6 +16,18 @@ describe('testing methods of List class', () => {
     myList = null;
   });
 
+  test('FOREACH: demonstrate proper operation of the forEach method', () => {
+    let acc = 0;
+    myList.forEach(el => acc += el); /*eslint-disable-line*/
+    expect(acc).toEqual(15);
+  });
+
+  test('FOREACH: test passing non-function callback', () => {
+    expect(() => {
+      myList.forEach('a string. Doh!');
+    }).toThrow();
+  });
+  
   test('PUSH: should show that the push method adds new items into the array', () => {
     expect(myList).toHaveLength(6);
     myList.push(6);
