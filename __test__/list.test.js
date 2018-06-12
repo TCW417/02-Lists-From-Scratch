@@ -34,7 +34,7 @@ describe('testing methods of List class', () => {
     expect(myList).toHaveLength(7);
     myList.push();
     expect(myList).toHaveLength(7);
-    expect(myList.list[0][myList.length - 1]).toEqual(6);
+    expect(myList.list[myList.length - 1]).toEqual(6);
     expect(myList.push(7, 8, 9)).toEqual(10);
   });
 
@@ -58,7 +58,7 @@ describe('testing methods of List class', () => {
     });
     expect(newList.length).toEqual(myList.length);
     for (let i = 0; i < newList.length; i++) {
-      expect(newList.list[0][i] / 2).toEqual(myList.list[0][i]);
+      expect(newList.list[i] / 2).toEqual(myList.list[i]);
     }
   });
 
@@ -66,7 +66,7 @@ describe('testing methods of List class', () => {
   test('FILTER: should return new list with filtered results', () => {
     const filteredList = myList.filter(el => el % 2 === 0);
     expect(filteredList).toHaveLength(3);
-    expect(filteredList.list[0][2]).toEqual(4);
+    expect(filteredList.list[2]).toEqual(4);
   });
 
   test('FILTER: throws error if a function is not passed in', () => {
@@ -98,7 +98,7 @@ describe('testing methods of List class', () => {
     expect(myList.shift()).toEqual(1);
     expect(myList.shift()).toEqual(2);
     expect(myList).toHaveLength(3);
-    expect(myList.list[0][2]).toEqual(5);
+    expect(myList.list[2]).toEqual(5);
     myList.shift();
     myList.shift();
     myList.shift();
@@ -113,6 +113,6 @@ describe('testing methods of List class', () => {
     expect(myList).toHaveLength(11);
     const newL = new List();
     expect(newL.unshift(1)).toEqual(1);
-    expect(newL.list[0][0]).toEqual(1);
+    expect(newL.list[0]).toEqual(1);
   });
 });
