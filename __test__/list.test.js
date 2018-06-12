@@ -27,7 +27,7 @@ describe('testing methods of List class', () => {
       myList.forEach('a string. Doh!');
     }).toThrow();
   });
-  
+
   test('PUSH: should show that the push method adds new items into the array', () => {
     expect(myList).toHaveLength(6);
     myList.push(6);
@@ -61,6 +61,19 @@ describe('testing methods of List class', () => {
     for (let i = 0; i < newList.length; i++) {
       expect(newList[i] / 2).toEqual(myList[i]);
     }
+  });
+
+  // filter
+  test('FILTER: should return new list with filtered results', () => {
+    const filteredList = myList.filter(el => el % 2 === 0);
+    expect(filteredList).toHaveLength(3);
+    expect(filteredList[2]).toEqual(4);
+  });
+
+  test('FILTER: throws error if a function is not passed in', () => {
+    expect(() => {
+      myList.filter('this is not a function');
+    }).toThrow();
   });
 
   // reduce
