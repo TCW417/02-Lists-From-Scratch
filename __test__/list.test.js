@@ -34,9 +34,8 @@ describe('testing methods of List class', () => {
     expect(myList).toHaveLength(7);
     myList.push();
     expect(myList).toHaveLength(7);
-    expect(myList[myList.length - 1]).toEqual(6);
+    expect(myList.list[myList.length - 1]).toEqual(6);
     expect(myList.push(7, 8, 9)).toEqual(10);
-    console.log(myList, 'in PUSH');
   });
 
   // error test: checking for undefined
@@ -59,7 +58,7 @@ describe('testing methods of List class', () => {
     });
     expect(newList.length).toEqual(myList.length);
     for (let i = 0; i < newList.length; i++) {
-      expect(newList[i] / 2).toEqual(myList[i]);
+      expect(newList.list[i] / 2).toEqual(myList.list[i]);
     }
   });
 
@@ -67,7 +66,7 @@ describe('testing methods of List class', () => {
   test('FILTER: should return new list with filtered results', () => {
     const filteredList = myList.filter(el => el % 2 === 0);
     expect(filteredList).toHaveLength(3);
-    expect(filteredList[2]).toEqual(4);
+    expect(filteredList.list[2]).toEqual(4);
   });
 
   test('FILTER: throws error if a function is not passed in', () => {
@@ -99,11 +98,37 @@ describe('testing methods of List class', () => {
     expect(myList.shift()).toEqual(1);
     expect(myList.shift()).toEqual(2);
     expect(myList).toHaveLength(3);
-    expect(myList[2]).toEqual(5);
+    expect(myList.list[2]).toEqual(5);
     myList.shift();
     myList.shift();
     myList.shift();
     expect(myList).toHaveLength(0);
     expect(myList.shift()).toBeUndefined();
+  });
+
+  test('UNSHIFT: should add items to front of list', () => {
+    expect(myList.unshift(1, 2, 3)).toEqual(9);
+    expect(myList).toHaveLength(9);
+    expect(myList.unshift(11, 12)).toEqual(11);
+    expect(myList).toHaveLength(11);
+    const newL = new List();
+    expect(newL.unshift(1)).toEqual(1);
+    expect(newL.list[0]).toEqual(1);
+  });
+
+  test('GET: return value at location idx', () => {
+    expect(myList.get(0)).toEqual(0);
+    expect(myList.get(6)).toBeUndefined();
+    expect(myList.get(4)).toEqual(4);
+    expect(myList.get(-1)).toBeUndefined();
+  });
+
+  test('SET: place value at location idx', () => {
+    expect(myList.set(0, 'fish')).toEqual('fish');
+    expect(myList.get(0)).toEqual('fish');
+    expect(myList.set(6, 'bad')).toBeUndefined();
+    expect(myList.set(5, 'cats')).toEqual('cats');
+    expect(myList.get(5)).toEqual('cats');
+    expect(myList.set(-1, 'bad')).toBeUndefined();
   });
 });
