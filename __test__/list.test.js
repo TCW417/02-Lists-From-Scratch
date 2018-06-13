@@ -115,4 +115,20 @@ describe('testing methods of List class', () => {
     expect(newL.unshift(1)).toEqual(1);
     expect(newL.list[0]).toEqual(1);
   });
+
+  test('GET: return value at location idx', () => {
+    expect(myList.get(0)).toEqual(0);
+    expect(myList.get(6)).toBeUndefined();
+    expect(myList.get(4)).toEqual(4);
+    expect(myList.get(-1)).toBeUndefined();
+  });
+
+  test('SET: place value at location idx', () => {
+    expect(myList.set(0, 'fish')).toEqual('fish');
+    expect(myList.get(0)).toEqual('fish');
+    expect(myList.set(6, 'bad')).toBeUndefined();
+    expect(myList.set(5, 'cats')).toEqual('cats');
+    expect(myList.get(5)).toEqual('cats');
+    expect(myList.set(-1, 'bad')).toBeUndefined();
+  });
 });
